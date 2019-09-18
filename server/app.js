@@ -2,7 +2,7 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema');
 const mongoose = require('mongoose');
-
+const cors = require('cors');
 const app = express();
 
 mongoose.connect('mongodb://ryan:zaq1xsw2@ds251632.mlab.com:51632/graphql-ryan',
@@ -11,6 +11,7 @@ mongoose.connection.once('open',()=>{
     console.log('connected to database');
 })
 
+app.use(cors());
 /*Query behaviours:
     query a property not exist => alert with red underline, return error
     query a property value but not found => null
